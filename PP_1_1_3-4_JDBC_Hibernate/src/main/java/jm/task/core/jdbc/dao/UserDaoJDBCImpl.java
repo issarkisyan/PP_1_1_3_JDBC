@@ -30,9 +30,12 @@ public class UserDaoJDBCImpl implements UserDao {
                 "PRIMARY KEY (`id`))" +
                 " ENGINE = InnoDB DEFAULT CHARACTER SET = utf8";
         try (Statement statement = connection.createStatement()) {
+            connection.setAutoCommit(false);
             statement.executeUpdate(sql);
         }  catch (SQLException e) {
-
+            connection.rollback();
+        } finally {
+            connection.setAutoCommit(true); //включаем AutoCommit
         }
 
     }
@@ -45,7 +48,7 @@ public class UserDaoJDBCImpl implements UserDao {
         } catch (SQLException e) {
             connection.rollback();
         } finally {
-            connection.setAutoCommit(true); //включаем AutoCommit
+            connection.setAutoCommit(true);
         }
 
     }
@@ -63,7 +66,7 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             connection.rollback();
         } finally {
-            connection.setAutoCommit(true); //включаем AutoCommit
+            connection.setAutoCommit(true);
         }
     }
 
@@ -77,7 +80,7 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             connection.rollback();
         } finally {
-            connection.setAutoCommit(true); //включаем AutoCommit
+            connection.setAutoCommit(true);
         }
 
     }
@@ -104,7 +107,7 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             connection.rollback();
         } finally {
-            connection.setAutoCommit(true); //включаем AutoCommit
+            connection.setAutoCommit(true);
         }
 
 
@@ -120,7 +123,7 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
             connection.rollback();
         } finally {
-            connection.setAutoCommit(true); //включаем AutoCommit
+            connection.setAutoCommit(true);
         }
     }
 }
