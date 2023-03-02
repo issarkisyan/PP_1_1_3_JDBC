@@ -7,7 +7,7 @@ public class Util {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
 
-    public Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         Connection connection = null;
 
         try {
